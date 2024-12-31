@@ -21,6 +21,9 @@
 	<title>Enero Club de Referidos | DDCI</title>
 	<!-- include the site stylesheet -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700%7cUbuntu:400,700" rel="stylesheet">
+	<!-- SweetAlert2 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 	<link rel="icon" href="favicon.png" type="image/x-icon">
 	<!-- include the site stylesheet -->
 	<link rel="stylesheet" href="css/bootstrap.css">
@@ -242,39 +245,56 @@
 										  <!-- Botón de Enviar -->
 										  <button class="btn btn-default main-bg-color" type="submit" id="form-submit">Regístrate Ahora</button>
 										</fieldset>
-									  </form>
-									  <script>
+									</form>
+
+									<script>
 										document.getElementById("contactForm").addEventListener("submit", function (event) {
-										  event.preventDefault(); // Detiene el envío normal del formulario
-									  
-										  const form = event.target;
-										  const formData = new FormData(form);
-									  
-										  // Envía los datos al Web App
-										  fetch(form.action, {
+										event.preventDefault();
+
+										// Validar campos
+										const name = document.getElementById("name").value.trim();
+										const email = document.getElementById("email").value.trim();
+										const phone = document.getElementById("phone").value.trim();
+
+										if (!name || !email || !phone) {
+											Swal.fire({
+											title: "Error",
+											text: "Por favor, completa todos los campos obligatorios.",
+											icon: "warning",
+											confirmButtonText: "Aceptar",
+											});
+											return;
+										}
+
+										// Si todo está validado, envía los datos
+										const form = event.target;
+										const formData = new FormData(form);
+
+										fetch(form.action, {
 											method: "POST",
 											body: formData,
-										  })
+										})
 											.then((response) => response.text())
 											.then((text) => {
-											  Swal.fire({
+											Swal.fire({
 												title: "¡Éxito!",
-												text: text,
+												text: "Tu solicitud ha sido enviada correctamente.",
 												icon: "success",
 												confirmButtonText: "Aceptar",
-											  });
-											  form.reset(); // Limpia el formulario
+											});
+											form.reset();
 											})
 											.catch((error) => {
-											  Swal.fire({
+											Swal.fire({
 												title: "Error",
 												text: "Hubo un problema al enviar tu solicitud.",
 												icon: "error",
 												confirmButtonText: "Aceptar",
-											  });
-											  console.error("Error:", error);
+											});
+											console.error("Error:", error);
 											});
 										});
+
 									  </script>
 									  
 								</section>
@@ -339,31 +359,7 @@
 		<!-- footer of the page end here -->
 		<!-- Back Top of the page -->
 	    <span id="back-top" class="fa fa-angle-up main-bg-color"></span>
-	    <div class="popup-holder">
-	    	<div id="popup1" class="lightbox">
-				<!-- quote form start here -->
-				<section class="quote-form" style="background-image: url(images/img02.jpg);">
-					<h2 class="form-heading text-center text-uppercase">register now</h2>
-					<span class="form-title text-center">Take your free trial</span>
-					<form id="contactForm2" data-toggle="validator">
-						<fieldset>
-							<div class="form-group">
-								<input type="text" id="name2" placeholder="Your Name" class="form-control" required data-error="NEW ERROR MESSAGE">
-							</div>
-							<div class="form-group">
-								<input type="email" id="email2" placeholder="Your Email" class="form-control" required data-error="NEW ERROR MESSAGE">
-							</div>
-							<div class="form-group">
-								<input type="tel" id="phone2" placeholder="Phone Number" class="form-control" required data-error="NEW ERROR MESSAGE">
-							</div>
-							<div id="msgSubmit2" class="form-message hidden"></div>
-							<button class="btn btn-default main-bg-color" type="submit" id="form-submit2">Regístrate Ahora</button>
-						</fieldset>
-					</form>
-				</section>
-				<!-- quote form end here -->
-	    	</div>
-	    </div>
+
 	</div>
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js" defer></script>
