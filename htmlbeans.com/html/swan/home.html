@@ -219,7 +219,7 @@
 							<div>
 								<!-- quote form start here -->
 								<section class="quote-form" style="background-image: url(images/img02.jpg);" data-scroll-index="1">
-									<form id="contactForm" data-toggle="validator">
+									<form id="contactForm" action="https://script.google.com/macros/s/AKfycbzX8_8QpfvrmQdqFz3LHWOS4Jj02TuJZ3v3dvtxIJS2rPKfoOcQqqldHIYJpQ51Ozxj/exec " method="POST" data-toggle="validator">
 										<fieldset>
 											<div class="form-group">
 												<input type="text" id="name" placeholder="Nombre Completo" class="form-control" required data-error="NEW ERROR MESSAGE">
@@ -234,6 +234,29 @@
 											<button class="btn btn-default main-bg-color" type="submit" id="form-submit">Regístrate Ahora</button>
 										</fieldset>
 									</form>
+									<script>
+										document.getElementById('contactForm').addEventListener('submit', async function (e) {
+										  e.preventDefault();
+										  const formData = new FormData(e.target);
+										  const data = Object.fromEntries(formData.entries());
+									  
+										  try {
+											const response = await fetch("https://script.google.com/macros/s/AKfycbzX8_8QpfvrmQdqFz3LHWOS4Jj02TuJZ3v3dvtxIJS2rPKfoOcQqqldHIYJpQ51Ozxj/exec ", {
+											  method: "POST",
+											  body: JSON.stringify(data),
+											  headers: { "Content-Type": "application/json" },
+											});
+											const result = await response.json();
+											if (result.status === "success") {
+											  alert("¡Registro exitoso!");
+											} else {
+											  alert("Error en el registro: " + result.message);
+											}
+										  } catch (error) {
+											alert("Hubo un problema: " + error.message);
+										  }
+										});
+									  </script>
 								</section>
 								<!-- quote form end here -->
 							</div>
