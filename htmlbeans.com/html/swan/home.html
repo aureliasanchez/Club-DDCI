@@ -222,7 +222,12 @@
 							<div>
 								<!-- quote form start here -->
 								<section class="quote-form" style="background-image: url(images/img02.jpg);" data-scroll-index="1">
-									<form id="FormContact" class="contact-form" action="https://script.google.com/macros/s/AKfycbzvlAYVKU4qAM_EG53eVlud_RqZOgVBs25TGqT-8L_VybPytrzJ17PBhKVu-oAd1KXf6g/exec" method="POST">
+									<form id="FormContact" class="contact-form" method="POST" data-netlify="true" name="FormContact">
+										<!-- Campo oculto necesario para Netlify -->
+										<input type="hidden" name="form-name" value="FormContact" />
+										<!-- Honeypot para evitar bots -->
+										<input type="text" name="bot-field" style="display:none;" />
+										
 										<fieldset>
 											<!-- Nombre Completo -->
 											<div class="form-group">
@@ -235,68 +240,18 @@
 												<label>Correo Electrónico</label>
 												<input type="email" name="Correo" placeholder="Correo Electrónico" required />
 											</div>
-									
+										
 											<!-- Número de Teléfono -->
 											<div class="form-group">
 												<label>Número de Teléfono</label>
 												<input type="tel" name="Telefono" placeholder="Número de Teléfono" required />
 											</div>
-									
+										
 											<!-- Botón de Enviar -->
 											<button type="submit" class="btn btn-primary">Enviar</button>
 										</fieldset>
 									</form>
 									
-									<script>
-										document.getElementById("FormContact").addEventListener("submit", function (event) {
-											event.preventDefault(); // Evita el envío normal del formulario
-										
-											// Obtén los datos del formulario
-											const form = event.target;
-											const formData = new FormData(form);
-										
-											// Muestra los datos enviados en la consola
-											console.log("Datos enviados:");
-											for (const [key, value] of formData.entries()) {
-												console.log(`${key}: ${value}`);
-											}
-										
-											// Envía los datos al Web App usando fetch
-											fetch(form.action, {
-												method: "POST",
-												body: formData,
-											})
-												.then((response) => {
-													console.log("Estado de la respuesta:", response.status);
-													return response.text(); // Obtiene la respuesta como texto
-												})
-												.then((text) => {
-													console.log("Respuesta del servidor:", text);
-										
-													// Muestra mensaje de éxito si todo salió bien
-													Swal.fire({
-														title: "¡Éxito!",
-														text: "Tu solicitud ha sido enviada correctamente.",
-														icon: "success",
-														confirmButtonText: "Aceptar",
-													});
-										
-													// Limpia el formulario
-													form.reset();
-												})
-												.catch((error) => {
-													// Manejo de errores
-													console.error("Error al enviar el formulario:", error);
-										
-													Swal.fire({
-														title: "Error",
-														text: "Hubo un problema al enviar tu solicitud. Intenta nuevamente.",
-														icon: "error",
-														confirmButtonText: "Aceptar",
-													});
-												});
-										});
-										</script>
 										
 									
 								
