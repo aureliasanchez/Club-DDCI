@@ -222,62 +222,70 @@
 							<div>
 								<!-- quote form start here -->
 								<section class="quote-form" style="background-image: url(images/img02.jpg);" data-scroll-index="1">
-									<form id="contactForm" action="https://script.google.com/macros/s/AKfycbzX8_8QpfvrmQdqFz3LHWOS4Jj02TuJZ3v3dvtxIJS2rPKfoOcQqqldHIYJpQ51Ozxj/exec" method="POST">
+									<form id="FormContact" class="contact-form" action="https://script.google.com/macros/s/AKfycbzX8_8QpfvrmQdqFz3LHWOS4Jj02TuJZ3v3dvtxIJS2rPKfoOcQqqldHIYJpQ51Ozxj/exec" method="POST">
 										<fieldset>
-										  <!-- Nombre Completo -->
-										  <div class="form-group">
-											<label>Nombre Completo</label>
-											<input type="text" name="Nombre" id="name" placeholder="Nombre Completo" class="form-control" required />
-										  </div>
-									  
-										  <!-- Correo Electrónico -->
-										  <div class="form-group">
-											<label>Correo Electrónico</label>
-											<input type="email" name="Correo" id="email" placeholder="Correo Electrónico" class="form-control" required />
-										  </div>
-									  
-										  <!-- Número de Teléfono -->
-										  <div class="form-group">
-											<label>Número de Teléfono</label>
-											<input type="tel" name="Telefono" id="phone" placeholder="Número de Teléfono" class="form-control" required />
-										  </div>
-									  
-										  <!-- Botón de Enviar -->
-										  <button class="btn btn-default main-bg-color" type="submit" id="form-submit">Regístrate Ahora</button>
+											<!-- Nombre Completo -->
+											<div class="form-group">
+												<label>Nombre Completo</label>
+												<input type="text" name="Nombre" placeholder="Nombre Completo" required />
+											</div>
+											
+											<!-- Correo Electrónico -->
+											<div class="form-group">
+												<label>Correo Electrónico</label>
+												<input type="email" name="Correo" placeholder="Correo Electrónico" required />
+											</div>
+									
+											<!-- Número de Teléfono -->
+											<div class="form-group">
+												<label>Número de Teléfono</label>
+												<input type="tel" name="Telefono" placeholder="Número de Teléfono" required />
+											</div>
+									
+											<!-- Botón de Enviar -->
+											<button type="submit" class="btn btn-primary">Enviar</button>
 										</fieldset>
 									</form>
+									
 
 									<script>
-										document.getElementById("contactForm").addEventListener("submit", function (event) {
-										  event.preventDefault(); // Detiene el envío normal del formulario
-									  
-										  // Validar campos
-										  const name = document.getElementById("name").value.trim();
-										  const email = document.getElementById("email").value.trim();
-										  const phone = document.getElementById("phone").value.trim();
-									  
-										  if (!name || !email || !phone) {
-											alert("Por favor, completa todos los campos obligatorios.");
-											return;
-										  }
-									  
-										  const form = event.target;
-										  const formData = new FormData(form);
-									  
-										  fetch(form.action, {
+										document.getElementById("FormContact").addEventListener("submit", function (event) {
+										event.preventDefault(); // Evita el envío normal del formulario
+
+										// Obtén los datos del formulario
+										const form = event.target;
+										const formData = new FormData(form);
+
+										// Envía los datos al Web App usando fetch
+										fetch(form.action, {
 											method: "POST",
 											body: formData,
-										  })
+										})
 											.then((response) => response.text())
 											.then((text) => {
-											  alert("¡Éxito! Tu solicitud fue enviada correctamente.");
-											  form.reset();
+												// Mostrar mensaje de éxito
+												Swal.fire({
+													title: "¡Éxito!",
+													text: "Tu solicitud ha sido enviada correctamente.",
+													icon: "success",
+													confirmButtonText: "Aceptar",
+												});
+
+												// Limpia el formulario
+												form.reset();
 											})
 											.catch((error) => {
-											  console.error("Error al enviar el formulario:", error);
-											  alert("Hubo un problema al enviar tu solicitud.");
+												// Manejo de errores
+												Swal.fire({
+													title: "Error",
+													text: "Hubo un problema al enviar tu solicitud. Intenta nuevamente.",
+													icon: "error",
+													confirmButtonText: "Aceptar",
+												});
+												console.error("Error al enviar el formulario:", error);
 											});
-										});
+									});
+
 									</script>
 									  
 
