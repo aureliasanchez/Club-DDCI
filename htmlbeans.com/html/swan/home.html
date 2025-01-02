@@ -179,7 +179,7 @@
 										<span class="icomoon icon-clock main-color"></span>
 										<span class="title text-uppercase main-color">Hora</span>
 										<span class="divider white center"></span>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ever since the 1500s.</p>
+										<p>7:00 pm</p>
 									</div>
 								</li>
 								<li>
@@ -223,28 +223,29 @@
 								<!-- quote form start here -->
 								<section class="quote-form" style="background-image: url(images/img02.jpg);" data-scroll-index="1">
 									<form id="FormContact" class="contact-form" method="POST" data-netlify="true" name="FormContact">
-										<input type="hidden" name="form-name" value="FormContact" />
 										<fieldset>
+											<input type="hidden" name="debug" value="true" />
 											<!-- Nombre Completo -->
 											<div class="form-group">
 												<label>Nombre Completo</label>
-												<input type="text" name="Nombre" placeholder="Nombre Completo" required />
+												<input type="text" name="Nombre" placeholder="Nombre Completo" class="form-control" required />
 											</div>
+											
 											
 											<!-- Correo Electrónico -->
 											<div class="form-group">
 												<label>Correo Electrónico</label>
-												<input type="email" name="Correo" placeholder="Correo Electrónico" required />
+												<input type="email" name="Correo" placeholder="Correo Electrónico" class="form-control" required />
 											</div>
 										
 											<!-- Número de Teléfono -->
 											<div class="form-group">
 												<label>Número de Teléfono</label>
-												<input type="tel" name="Telefono" placeholder="Número de Teléfono" required />
+												<input type="tel" name="Telefono" placeholder="Número de Teléfono" class="form-control" required />
 											</div>
 										
 											<!-- Botón de Enviar -->
-											<button type="submit" class="btn btn-primary">Enviar</button>
+											<button type="submit" class="btn btn-default main-bg-color" id="form-submit">Enviar</button>
 										</fieldset>
 									</form>
 									
