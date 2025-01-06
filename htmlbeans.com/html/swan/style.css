@@ -1358,6 +1358,9 @@ body.boxed-v #wrapper {
 	overflow: hidden;
 	position: relative;
 	background: #212121;
+	overflow: visible; /* Permite mostrar contenido completo */
+
+
 }
 
 .services-section .services-box li:last-child,
@@ -1368,24 +1371,28 @@ body.boxed-v #wrapper {
 .services-section .services-box li:hover .over {
 	-webkit-transform: translateY(-67%);
 	-ms-transform: translateY(-67%);
-	transform: translateY(-67%);
+	transform: none;
 }
 
 .services-section .services-box li:hover .icomoon {
-	opacity: 0;
+	opacity: 1;
 	-webkit-transform: translateY(-62%);
 	-ms-transform: translateY(-62%);
-	transform: translateY(-62%);
+	transform: none;
 }
 
 .services-section .services-box li:hover p {
 	opacity: 1;
 	-webkit-transform: translateY(0);
 	-ms-transform: translateY(0);
-	transform: translateY(0);
+	transform: none;
 }
 
 .services-section .services-box .over {
+	display: block; /* Asegura que los datos siempre sean visibles */
+    visibility: visible; /* Garantiza la visibilidad */
+    transform: none; /* Desactiva transformaciones animadas */
+
 	left: 0;
 	right: 0;
 	top: 50%;
@@ -1403,24 +1410,28 @@ body.boxed-v #wrapper {
 }
 
 .services-section .services-box .icomoon {
+	opacity: 1; /* Siempre visible */
+	transform: none; /* Sin transformación */
 	display: block;
 	font-size: 50px;
 	margin: 0 0 16px;
 	-webkit-transition: all ease .3s;
-	transition: all ease .3s;
+	transition: none;
 }
 
 .services-section .services-box p {
-	opacity: 0;
+    opacity: 1; /* Siempre visible */
 	color: #ffffff;
 	max-width: 90%;
 	line-height: 20px;
 	margin: 15px auto 0;
 	-webkit-transition: all ease .3s;
-	transition: all ease .3s;
+    transition: none; /* Quitar transiciones */
 	-webkit-transform: translateY(50%);
 	-ms-transform: translateY(50%);
-	transform: translateY(50%);
+    transform: none; /* Sin transformación */
+    max-width: 90%;
+    line-height: 20px;
 }
 
 .services-section .services-box .title {
