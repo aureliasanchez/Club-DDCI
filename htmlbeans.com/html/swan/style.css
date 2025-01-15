@@ -1359,9 +1359,14 @@ body.boxed-v #wrapper {
 	position: relative;
 	background: #212121;
 	overflow: visible; /* Permite mostrar contenido completo */
+	display: flex; /* Flexbox para alinear contenido */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+
 
 
 }
+
 
 .services-section .services-box li:last-child,
 .services-section .services-box li:first-child {
